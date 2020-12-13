@@ -3,11 +3,13 @@ import Constants from "expo-constants";
 import * as Colors from "../../styles/colors";
 
 export default StyleSheet.create({
-  container: {
+  scrollView: {
     flex: 1,
+    backgroundColor: Colors.SECOND_BACKGROUND,
+  },
+  container: {
     paddingHorizontal: 24,
     paddingTop: Constants.statusBarHeight + 20,
-    backgroundColor: Colors.SECOND_BACKGROUND,
     alignItems: "center",
   },
 
@@ -18,13 +20,16 @@ export default StyleSheet.create({
     marginBottom: 90,
   },
   titulo: {
+    lineHeight: 20,
     textAlign: "center",
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 30,
   },
   subTitulo: {
+    lineHeight: 20,
     textAlign: "center",
+    marginBottom: 24,
     marginLeft: 10,
     marginRight: 10,
     color: "#5E5E5E",

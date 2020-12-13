@@ -9,7 +9,8 @@ export default StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     position: 'relative',
-    marginBottom: 24,
+    marginTop: 24,
+    marginBottom: 8
   },
 
   label: {
@@ -18,7 +19,9 @@ export default StyleSheet.create({
   },
 
   input: {
-    backgroundColor: "#21212114",
+    borderColor: "#ccc",
+    borderStyle: 'solid',
+    borderWidth: 1,
     height: '100%',
     width: '100%',
     borderTopLeftRadius: 4,
@@ -26,10 +29,7 @@ export default StyleSheet.create({
     padding: 16
   },
 
-  iconPassword: {
-    fontSize: 24,
-    position: 'absolute',
-    right: 16,
-    color: "#3d3d3d"
+  inputCash: {
+    paddingLeft: 40
   }
 })

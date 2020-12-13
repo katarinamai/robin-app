@@ -1,50 +1,54 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Button from "../../components/Button";
 import GoBack from "../../components/GoBack";
 import BarOnboarding from "../../components/BarOnboarding";
-import BotaoRetangular from "../../components/botao-retangular";
+import ButtonPlus from "../../components/ButtonPlus";
 
 import styles from "./styles";
 
 export default function Onboarding3() {
   const navigation = useNavigation();
 
+  function handleNavigateToCashDeposit() {
+    navigation.navigate("Depositar");
+  }
+
   return (
-    <View style={styles.container}>
-      <View style={styles.barsContainer}>
-        <BarOnboarding />
-        <BarOnboarding spaced />
-        <BarOnboarding selected />
-      </View>
+    <ScrollView style={styles.scrollView}>
+      <View style={styles.container}>
+        <View style={styles.barsContainer}>
+          <BarOnboarding />
+          <BarOnboarding spaced />
+          <BarOnboarding selected />
+        </View>
 
-      <GoBack />
+        <GoBack />
 
-      <Text style={styles.titulo}>
-        Faça um depósito e comece a usar já sua conta PaySmart.
-      </Text>
+        <Text style={styles.titulo}>
+          Faça um depósito e comece a usar já sua conta PaySmart.
+        </Text>
 
-      <Text style={styles.subTitulo}>Você terá acesso ao cartão físico</Text>
+        <Text style={styles.subTitulo}>
+          Você terá acesso ao cartão físico e virtual.
+        </Text>
 
-      <Text style={styles.subTitulo}>e virtual.</Text>
+        <ButtonPlus
+          label="Depositar Dinheiro"
+          onPress={handleNavigateToCashDeposit}
+        />
 
-      <View style={styles.cadastrar}>
-        <BotaoRetangular
-          title="DEPOSITAR DINHEIRO"
+        <View style={{ marginBottom: 32 }} />
+
+        <Button
+          label="Pular Etapa"
           onPress={() => {
-            navigation.navigate("Depositar");
+            navigation.navigate("Principal");
           }}
         />
       </View>
-
-      <Button
-        label="Pular Etapa"
-        onPress={() => {
-          navigation.navigate("Principal");
-        }}
-      />
-    </View>
+    </ScrollView>
   );
 }

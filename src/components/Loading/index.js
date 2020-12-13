@@ -1,13 +1,17 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import ShimmerPlaceholder from 'react-native-shimmer-placeholder'
+import React from "react";
+import { View, Text, ActivityIndicator } from "react-native";
 
-function Loading({ children }) {
+import styles from "./styles";
+
+function Loading() {
   return (
-    <ShimmerPlaceholder>
-      {children}
-    </ShimmerPlaceholder>
-  )
+    <View style={styles.container}>
+      <View style={styles.loading}>
+          <Text style={styles.title}>Processando seus dados...</Text>
+        <ActivityIndicator size="large" color="#F7931E" />
+      </View>
+    </View>
+  );
 }
 
 export default Loading

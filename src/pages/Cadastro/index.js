@@ -4,37 +4,43 @@ import { useNavigation } from "@react-navigation/native";
 
 import InputSignup from "../../components/InputSign";
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 
 import logoImg from "../../assets/logo.png";
 import styles from "./styles";
-import BotaoQuadrado from "../../components/botao-quadrado";
 
 import api from "../../services/api";
 
 export default function Cadastro() {
+  const navigation = useNavigation();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [documentNumber, setDocumentNumber] = useState("");
-
-  // const [login, setLogin] = useState();
-  const navigation = useNavigation();
+  const [loading, setLoading] = useState(false)
 
   async function handleSignup() {
     const data = {
       name,
-      email,
+      email: email.toLocaleLowerCase(),
       documentNumber,
       password
     }
 
     try {
+      setLoading(true)
       await api.post("/accounts", data)
+      setLoading(false)
 
       navigation.navigate("Login")
     } catch(e) {
       Alert.alert("E-mail ou CPF já existente!")
     }
+  }
+
+  if(loading) {
+    return <Loading />
   }
 
   return (

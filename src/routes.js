@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 
 const AppStack = createStackNavigator();
 
@@ -24,23 +24,28 @@ import Goal from './pages/Goal';
 export default function Routes() {
     return(
         <NavigationContainer>
-            <AppStack.Navigator screenOptions={{headerShown: false}} >
-                <AppStack.Screen name="Login" component={Login} />
-                <AppStack.Screen name="PagarDivida" component={PagarDivida} />
-                <AppStack.Screen name="Divida" component={Divida} />
-                <AppStack.Screen name="Principal" component={Principal} />
-                <AppStack.Screen name="VirtualCard" component={VirtualCard} />
-                <AppStack.Screen name="Essential" component={Essential} />
-                <AppStack.Screen name="Goal" component={Goal} />
-                <AppStack.Screen name="CadastrarObjetivo" component={CadastrarObjetivo} />
-                <AppStack.Screen name="ObjetivoAlcancado" component={ObjetivoAlcancado} />
-                <AppStack.Screen name="Cadastro" component={Cadastro} />
-                <AppStack.Screen name="CadastrarBanco" component={CadastrarBanco} />
-                <AppStack.Screen name="Onboarding1" component={Onboarding1} />
-                <AppStack.Screen name="Onboarding2" component={Onboarding2} />
-                <AppStack.Screen name="Onboarding3" component={Onboarding3} />
-                <AppStack.Screen name="Depositar" component={Depositar} />
-                <AppStack.Screen name="Autenticacao" component={Autenticacao} />
+            <AppStack.Navigator screenOptions={{
+              headerShown: false,
+              gestureEnabled: true,
+              gestureDirection: "horizontal",
+              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}
+            >
+              <AppStack.Screen name="Login" component={Login} />
+              <AppStack.Screen name="PagarDivida" component={PagarDivida} />
+              <AppStack.Screen name="Divida" component={Divida} />
+              <AppStack.Screen name="Principal" component={Principal} />
+              <AppStack.Screen name="VirtualCard" component={VirtualCard} />
+              <AppStack.Screen name="Essential" component={Essential} />
+              <AppStack.Screen name="Goal" component={Goal} />
+              <AppStack.Screen name="CadastrarObjetivo" component={CadastrarObjetivo} />
+              <AppStack.Screen name="ObjetivoAlcancado" component={ObjetivoAlcancado} />
+              <AppStack.Screen name="Cadastro" component={Cadastro} />
+              <AppStack.Screen name="CadastrarBanco" component={CadastrarBanco} />
+              <AppStack.Screen name="Onboarding1" component={Onboarding1} />
+              <AppStack.Screen name="Onboarding2" component={Onboarding2} />
+              <AppStack.Screen name="Onboarding3" component={Onboarding3} />
+              <AppStack.Screen name="Depositar" component={Depositar} />
+              <AppStack.Screen name="Autenticacao" component={Autenticacao} />
             </AppStack.Navigator>
         </NavigationContainer>
     );

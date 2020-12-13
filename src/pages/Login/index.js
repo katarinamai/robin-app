@@ -26,7 +26,7 @@ export default function Login() {
   }, [])
 
   async function handleLogin() {
-    const data = { email, password }
+    const data = { email: email.toLocaleLowerCase(), password }
 
     try {
       const response = await api.post("/accounts/auth", data);

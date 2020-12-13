@@ -3,6 +3,10 @@ import Constants from "expo-constants";
 import * as Colors from "../../styles/colors";
 
 export default StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    backgroundColor: Colors.SECOND_BACKGROUND,
+  },
   container: {
     flex: 1,
     paddingHorizontal: 24,

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, View, Text, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { AppLoading } from "expo";
 import { Feather } from "@expo/vector-icons";
 
 import GoBack from "../../components/GoBack";
+import Loading from "../../components/Loading";
 
 import logoRobin from "../../assets/logo_white.png";
 import paysmart from "../../assets/paysmart.png";
@@ -15,17 +15,16 @@ import api from "../../services/api";
 
 function VirtualCard() {
   const params = useRoute().params;
-  const [loading, setLoading] = useState(false);
   const [cardInfo, setCardInfo] = useState();
 
   useEffect(() => {
     api.get(`accounts/${params.user_id}`).then((response) => {
       setCardInfo(response.data.virtualCard);
-    });
+    })
   }, [params]);
 
   if (!cardInfo) {
-    return <AppLoading />
+    return <Loading />
   }
 
   return (

@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { View, ScrollView } from "react-native";
-import { BarChart, Grid, YAxis } from "react-native-svg-charts";
-
-import { AppLoading } from "expo";
+import { useRoute } from "@react-navigation/native";
 
 import Header from "../../components/Header";
 import Balance from "../../components/Balance";
+import ButtonPlus from "../../components/ButtonPlus";
+import Chart from "../../components/Chart";
+import Loading from "../../components/Loading";
 
 import styles from "./styles";
 
-function Essential() {
-  const [chartData, setChartData] = useState([{ label: "", value: 0 }]);
-  const [config, setCofing] = useState();
+import api from '../../services/api'
 
-  const fill = "#e69233";
+function Essential() {
+  const params = useRoute().params;
+  const [chartData, setChartData] = useState([]);
+  const [found, setFound] = useState([ { amount: 0, category: '' }])
+
+  useEffect(() => {
+    api.get(`/transactions/founds/${params.user_id}`).then(response => {
+      setFound(response.data)
+    })
+  }, [params])
 
   useEffect(() => {
     const data = [
@@ -35,39 +43,23 @@ function Essential() {
       },
     ];
 
-    setChartData(data);
-    setCofing(config);
+    setChartData([ { label: "", value: 0 }, ...data, ]);
   }, []);
+
+  if(found.length < 2) {
+    return <Loading />
+  }
 
   return (
     <ScrollView>
       <Header title="Essencial" />
 
       <View style={styles.container}>
-        <Balance balance="742,01" cashback="27,57" label="Valor disponível" />
+        <Balance balance={found[0].amount} label="Valor disponível" />
 
-        <View
-          style={{ flexDirection: "row", height: 200, paddingVertical: 16 }}
-        >
-          <YAxis
-            data={chartData}
-            yAccessor={({ index }) => index}
-            contentInset={{ top: 10, bottom: 10 }}
-            formatLabel={(_, index) => chartData[1].label}
-          />
+        <Chart chartData={chartData} />
 
-          <BarChart
-            horizontal
-            style={{ height: 160, width: "100%" }}
-            yAccessor={({ item }) => item.value}
-            data={chartData}
-            spacingInner={0.3}
-            svg={{ fill, fillOpacity: 0.7 }}
-            contentInset={{ top: 30, bottom: 30 }}
-          >
-            <Grid direction={Grid.Direction.VERTICAL} />
-          </BarChart>
-        </View>
+        <ButtonPlus label="Adicionar Categoria" />
       </View>
     </ScrollView>
   );

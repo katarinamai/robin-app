@@ -1,36 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Image} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import styles from './styles';
-import BotaoBack from '../../components/botao-back';
-import BotaoRetangular from '../../components/botao-retangular';
-import api from '../../services/api';
-import Img from '../../assets/undraw_stepping_up_g6oo.png';
+import React, { useState, useEffect } from "react";
+import { View, Text, Image, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
+import GoBack from "../../components/GoBack";
+import ButtonPlus from "../../components/ButtonPlus";
 
-export default function ObjetivoAlcancado({ navigation: { goBack } }) {
-    const navigation = useNavigation()
-    
-    return(
-        <View style={styles.container} >
-             <View style={styles.back}>
-                <BotaoBack
-                onPress={() => goBack()}/>
-            </View>
-            <Image source={Img} style={styles.logo} />
-            <Text style={styles.parabens}>Parabéns</Text>
-            <View style={styles.textContent}>
-                <Text>Obetivo Alcançado</Text>
-                <Text>R$ 1.000,00</Text>
-                <View style={styles.textSubContent}>
-                    <Text>Vamos continuar trabalhando</Text>
-                    <Text>no seu futuro?</Text>
-                </View>
-            </View>
-            <BotaoRetangular
-                title="Adicionar objetivo"
-                onPress={() => {navigation.navigate('CadastrarObjetivo')}}
-                />
+import Img from "../../assets/undraw_stepping_up_g6oo.png";
+
+import api from "../../services/api";
+
+import styles from "./styles";
+
+export default function ObjetivoAlcancado() {
+  const navigation = useNavigation();
+
+  function handleNavigateToNewGoal() {
+    navigation.navigate("CadastrarObjetivo");
+  }
+
+  return (
+    <ScrollView style={styles.scrollView}>
+      <View style={styles.container}>
+        <GoBack />
+
+        <Image source={Img} style={styles.logo} />
+
+        <Text style={styles.parabens}>Parabéns</Text>
+
+        <View style={styles.textContent}>
+          <Text style={styles.cashTitle}>Obetivo Alcançado</Text>
+
+          <Text style={styles.cashText}>R$ 1.000,00</Text>
+
+          <View style={styles.textSubContent}>
+            <Text>Vamos continuar trabalhando no seu futuro?</Text>
+          </View>
         </View>
-    );
+
+        <ButtonPlus
+          label="Adicionar objetivo"
+          onPress={handleNavigateToNewGoal}
+        />
+      </View>
+    </ScrollView>
+  );
 }

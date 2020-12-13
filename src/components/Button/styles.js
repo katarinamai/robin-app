@@ -11,6 +11,7 @@ export default StyleSheet.create({
   },
 
   buttonText: {
+    fontFamily: "Roboto_500Medium",
     color: '#FFFFFF',
     textTransform: 'uppercase'
   }

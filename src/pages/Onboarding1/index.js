@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, ScrollView, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Button from "../../components/Button";
@@ -13,21 +13,23 @@ export default function Onboarding1() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.barsContainer}>
-        <BarOnboarding selected />
-        <BarOnboarding spaced />
-        <BarOnboarding />
+    <ScrollView style={styles.scrollView}>
+      <View style={styles.container}>
+        <View style={styles.barsContainer}>
+          <BarOnboarding selected />
+          <BarOnboarding spaced />
+          <BarOnboarding />
+        </View>
+
+        <Image source={ImgBemVinde} style={{ marginBottom: 32 }} />
+
+        <Button
+          label="Continuar"
+          onPress={() => {
+            navigation.navigate("Onboarding2");
+          }}
+        />
       </View>
-
-      <Image source={ImgBemVinde} style={{ marginBottom: 32 }} />
-
-      <Button
-        label="Pular Etapa"
-        onPress={() => {
-          navigation.navigate("Onboarding2");
-        }}
-      />
-    </View>
+    </ScrollView>
   );
 }

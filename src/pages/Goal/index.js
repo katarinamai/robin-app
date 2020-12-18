@@ -21,7 +21,7 @@ function Goal() {
 
   useEffect(() => {
     api.get(`/transactions/founds/${params.user_id}`).then(response => {
-      setFound(response.data)
+      setFound(response.data.map(data => ({ amount:data.amount/100, category:data.category})))
     })
   }, [params])
 

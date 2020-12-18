@@ -3,7 +3,7 @@ import { ScrollView, View, Text, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 
-import GoBack from "../../components/GoBack";
+import BackToHome from "../../components/BackToHome";
 import Loading from "../../components/Loading";
 
 import logoRobin from "../../assets/logo_white.png";
@@ -29,7 +29,9 @@ function VirtualCard() {
 
   return (
     <ScrollView style={styles.container}>
-      <GoBack pageTitle="Cartão virtual" />
+      <View style={styles.back}>
+        <BackToHome pageTitle="Cartão virtual" />
+      </View>
 
       <View style={styles.cardContainer}>
         <View style={styles.cardImgContainer}>

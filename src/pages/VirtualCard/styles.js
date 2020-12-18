@@ -69,5 +69,10 @@ export default StyleSheet.create({
     color: "#F7931E",
     fontSize: 24,
     marginRight: 8
-  },
+  },back: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    width: '100%',
+    marginBottom: 90
+},
 })

@@ -26,7 +26,7 @@ export default function Principal() {
 
   useEffect(() => {
     api.get(`/transactions/founds/${user_id}`).then(response => {
-      setFound(response.data)
+      setFound(response.data.map(data => ({ amount:data.amount/100, category:data.category})))
     })
   }, [user_id])
 
@@ -51,7 +51,7 @@ export default function Principal() {
       <Header title="Início" />
 
       <View style={styles.content}>
-        <Balance balance={found[0].amount} label="Saldo Disponível" />
+        <Balance balance={(found[0].amount + found[2].amount)} label="Saldo Disponível" />
 
         <TouchableOpacity
           style={styles.creditCard}

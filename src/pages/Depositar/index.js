@@ -27,7 +27,7 @@ export default function Onboarding1() {
     const data = {
       account_id: user_id,
       operation_type_id: 1,
-      amount: 7252
+      amount: 100000
     }
 
     await api.post('/transactions', data)
